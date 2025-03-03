@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Us - PhysioCare Clinic">
+    <meta name="keywords" content="physiotherapy, clinic, about us">
+    <meta name="author" content="PhysioCare Clinic">
+    <title>About Us - PhysioCare Clinic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+ /* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h2 {
+    font-size: 2.5rem;
+    color: #D32F2F; /* Red for headings */
+    margin-bottom: 2rem;
+}
+
+p {
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    margin-top: 1rem;
+    background: #D32F2F; /* Red for buttons */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #B71C1C; /* Darker red on hover */
+}
+
+/* More Dramatic Fade-in Effect */
+.fade-in {
+    opacity: 0;                         /* Hidden initially */
+    transform: translateY(80px);         /* Slides from 80px below */
+    transition: opacity 2s ease, transform 2s ease; /* Slower fade-in */
+    transition-delay: 0.3s;              /* Optional: Delay animation */
+}
+
+.fade-in.visible {
+    opacity: 1;                          /* Fully visible */
+    transform: translateY(0);            /* Return to original position */
+}
+
+
+/* Header and Navigation */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Fix the header at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure it stays above other content */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.header.hide {
+    transform: translateY(-100%); /* Hide the header by moving it up */
+}
+.header.sticky {
+    background: rgba(255, 255, 255, 0.9);
+}
+
+.logo img {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.clinic-name {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-left: 0.2rem;
+    background: linear-gradient(45deg, #D32F2F, #FFC107); /* Red to Yellow gradient */
+    background-clip: text; /* Standard property */
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .clinic-name {
+        font-size: 1.4rem; /* Smaller size for mobile phones */
+    }
+}
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+    justify-content: center;
+    align-items: flex-start; /* Align bars to the left (same starting point) */
+}
+
+.menu-toggle .bar {
+    height: 3px; /* Bar height */
+    margin: 3px 0; /* Spacing between bars */
+    border-radius: 2px; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition for animations */
+}
+
+/* First bar (second longest) */
+.menu-toggle .bar:nth-child(1) {
+    width: 20px; /* Second longest */
+    background-color: #D32F2F; /* Blue color */
+}
+
+/* Middle bar (longest) */
+.menu-toggle .bar:nth-child(2) {
+    width: 25px; /* Longest */
+    background-color: #FFC107; /* Coral color */
+}
+
+/* Third bar (shortest) */
+.menu-toggle .bar:nth-child(3) {
+    width: 15px; /* Shortest */
+    background-color: #D32F2F; /* Green color */
+}
+
+/* Hover effect - Change colors on hover */
+.menu-toggle:hover .bar:nth-child(1) {
+    background-color: #FFC107; /* Darker blue */
+}
+
+.menu-toggle:hover .bar:nth-child(2) {
+    background-color: #D32F2F; /* Darker coral */
+}
+
+.menu-toggle:hover .bar:nth-child(3) {
+    background-color: #FFC107; /* Darker green */
+}
+
+        .nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links a {
+    color: #333;
+    font-size: 1.1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #D32F2F; /* Red on hover */
+}
+
+.nav-links a.active {
+    color: #D32F2F; /* Red for active link */
+    text-decoration: none;
+    .dropdown {
+    position: relative;
+}
+}
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    content: " ▼"; /* Down arrow as indicator */
+    font-size: 0.6em;
+    vertical-align: middle;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position dropdown below the parent */
+    left: 50%; /* Center the dropdown relative to the parent */
+    transform: translateX(-50%); /* Adjust for centering */
+    background-color: #f8f9fa;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    min-width: 150px; /* Ensure dropdown has a minimum width */
+    padding: 10px 0; /* Add padding for better spacing */
+    text-align: left; /* Align text to the left */
+}
+
+.dropdown-menu a {
+    display: block; /* Make each link a block element */
+    padding: 8px 16px; /* Add padding for clickable area */
+    color: #333; /* Text color */
+    text-decoration: none; /* Remove underline */
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+.dropdown-menu a:hover {
+    background-color: #e9ecef; /* Hover background color */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 768px) {
+    .dropdown-toggle::after {
+        content: " ▼"; /* Keep the indicator for mobile */
+    }
+
+    .dropdown-menu {
+        position: static; /* Stack dropdown items vertically on mobile */
+        box-shadow: none;
+        left: auto; /* Reset left positioning */
+        transform: none; /* Reset transform */
+    }
+
+    .dropdown.active .dropdown-menu {
+        display: block; /* Show dropdown when active */
+    }
+}
+
+/* About Us Section */
+.about-us {
+    padding: 150px 20px 50px;
+    text-align: center;
+    background-color: #fff;
+    background-image: url('about-us-bg.jpg'); /* Add your background image */
+    background-size: cover; /* Ensure the image covers the section */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    position: relative; /* For overlay */
+    color: #000; /* Black text color */
+}
+
+/* Overlay to control background image opacity */
+.about-us::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.4); /* White overlay with 70% opacity */
+    z-index: 1; /* Place the overlay above the background image */
+}
+
+/* Ensure text is above the overlay */
+.about-us h2,
+.about-us-content {
+    position: relative;
+    z-index: 2; /* Place text above the overlay */
+}
+
+.about-us h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.about-us-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* Why Ajay's Section */
+.why-ajays {
+    padding: 50px 20px;
+    background-color: #edf2f6;
+}
+
+.why-ajays-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.why-ajays-content .text-content {
+    flex: 1;
+}
+
+.why-ajays-content .image-content {
+    flex: 1;
+    text-align: center;
+}
+
+.why-ajays-content img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.why-ajays h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.why-ajays ul {
+    list-style: none;
+    padding: 0;
+}
+
+.why-ajays ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.why-ajays ul li i {
+    margin-right: 10px;
+    color: #007bf0;
+}
+
+/* Our Approach Section */
+.our-approach {
+    padding: 50px 20px;
+    background-color: #fff;
+}
+
+.our-approach-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.our-approach-content .image-content {
+    flex: 1;
+    text-align: center;
+}
+
+.our-approach-content img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.our-approach-content .text-content {
+    flex: 1;
+}
+
+.our-approach h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.our-approach ul {
+    list-style: none;
+    padding: 0;
+}
+
+.our-approach ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.our-approach ul li i {
+    margin-right: 10px;
+    color: #007bf0;
+}
+
+
+.our-branches {
+    background-color: #edf2f6; /* Light gray background */
+}
+
+/* Why Choose Us Section */
+.why-choose-us {
+    padding: 50px 20px;
+    background-color: #fff;
+    text-align: center;
+}
+
+.why-choose-us h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+}
+
+.why-choose-us-content {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.why-choose-us-content .reason {
+    flex: 1;
+    background-color: #fff; /* Default background color */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Different background colors for each column */
+.why-choose-us-content .reason:nth-child(1) {
+    background-color: #daebf9; /* Light blue */
+}
+
+.why-choose-us-content .reason:nth-child(2) {
+    background-color: #dff6df; /* Light green */
+}
+
+.why-choose-us-content .reason:nth-child(3) {
+    background-color: #fadbe5; /* Light pink */
+}
+
+.why-choose-us-content .reason i {
+    font-size: 2rem;
+    color: #d43333;
+    margin-bottom: 10px;
+}
+
+.why-choose-us-content .reason h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Footer */
+.footer {
+            background-color: #000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links a {
+            color: #FFD700;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            color: #D32F2F;
+        }
+
+/* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #D32F2F;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+}
+
+.back-to-top:hover {
+    background-color: #ff4a3a;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: #f8f9fa;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .why-ajays-content, .our-approach-content {
+        flex-direction: column;
+    }
+    .our-approach-content .image-content {
+        order: 2; /* Move image to the bottom */
+    }
+
+    .our-approach-content .text-content {
+        order: 1; /* Move text to the top */
+    }
+
+    .why-choose-us-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+</style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <img src="logo.jpg" alt="PhysioCare Clinic Logo">
+        </div>
+        <div class="clinic-name">Ajay's Physiotherapy Centre</div>
+        <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <div class="dropdown">
+                <a href="#about" class="dropdown-toggle active" aria-haspopup="true" aria-expanded="false">About</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown-toggle">
+                    <a href="about-us.html" class="active">About Us</a>
+                    <a href="our-team.html">Our Team</a>
+                </div>
+            </div>
+            <a href="service.html">Services</a>
+            <a href="index.html#appointment">Appointment</a>
+            <a href="index.html#reviews">Reviews</a>
+            <a href="index.html#contact">Contact</a>
+        </nav>
+    </header>
+<!-- About Us Section -->
+<section class="about-us fade-in">
+    <h2>About Us</h2>
+    <div class="about-us-content">
+        <p>At PhysioCare Clinic, we are dedicated to helping individuals overcome physical challenges, manage pain, and regain mobility through expert physiotherapy care. With over 13 years of experience, our clinic specializes in treating orthopedic-musculoskeletal conditions, neurological conditions, sports injury rehabilitation, and post-surgery recovery. Our results-oriented approach and commitment to personalized treatment plans have made us one of the leading physiotherapy clinics in Kerala. By combining advanced techniques with compassionate care, we focus on holistic healing to restore function, alleviate pain, and enhance overall well-being.</p>
+    </div>
+</section>
+
+<!-- Why Ajay's Section -->
+<section class="why-ajays fade-in">
+    <div class="why-ajays-content">
+        <div class="text-content">
+            <h2>Why Ajay's Physiotherapy</h2>
+            <p>At Ajay's Physiotherapy Centre, we pride ourselves on offering exceptional care tailored to your needs. Our team of experienced professionals is dedicated to helping you achieve your health goals. With state-of-the-art facilities and a patient-centered approach, we ensure the best possible outcomes for every individual.</p>
+            <ul>
+                <li><i class="fas fa-check"></i> Experienced and skilled physiotherapists.</li>
+                <li><i class="fas fa-check"></i> Personalized treatment plans for every patient.</li>
+                <li><i class="fas fa-check"></i> Advanced technology and modern equipment.</li>
+                <li><i class="fas fa-check"></i> Compassionate and supportive environment.</li>
+            </ul>
+        </div>
+        <div class="image-content">
+            <img src="why-ajays.jpg" alt="Why Ajay's Physiotherapy Centre">
+        </div>
+    </div>
+</section>
+
+<!-- Our Approach Section -->
+<section class="our-approach fade-in">
+    <div class="our-approach-content">
+        <div class="image-content">
+            <img src="our-approach.jpg" alt="Our Approach">
+        </div>
+        <div class="text-content">
+            <h2>Our Approach</h2>
+            <p>Our approach to physiotherapy is rooted in a commitment to holistic healing and patient-centered care. We believe in treating the root cause of the problem, not just the symptoms, to ensure long-term recovery and improved quality of life.</p>
+            <ul>
+                <li><i class="fas fa-check"></i> Comprehensive assessment to understand your condition.</li>
+                <li><i class="fas fa-check"></i> Tailored treatment plans for effective results.</li>
+                <li><i class="fas fa-check"></i> Focus on restoring function and mobility.</li>
+                <li><i class="fas fa-check"></i> Continuous support and follow-up care.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Our Branches Section -->
+<section class="our-approach our-branches fade-in">
+    <div class="our-approach-content">
+        <div class="text-content">
+            <h2>Our Branches</h2>
+            <p>We have multiple branches across the region to serve you better. Visit us at any of our convenient locations.</p>
+            <ul>
+                <li><i class="fas fa-map-marker-alt"></i> Pandikkad Branch: 123 Main Street, Pandikkad, Kerala</li>
+                <li><i class="fas fa-map-marker-alt"></i> Melattur Branch: 456 Park Avenue, Melattur, Kerala</li>
+                <li><i class="fas fa-map-marker-alt"></i> Kalikavu Branch: 789 Elm Street, Kalikavu, Kerala</li>
+                <li><i class="fas fa-map-marker-alt"></i> Pookkottumpadam Branch: 321 Oak Street, Pookkottumpadam, Kerala</li>
+            </ul>
+        </div>
+        <div class="image-content">
+            <img src="branches.jpg" alt="Our Branches">
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-us fade-in">
+    <h2>Why Choose Us?</h2>
+    <div class="why-choose-us-content">
+        <div class="reason">
+            <i class="fas fa-award"></i>
+            <h3>Proven Track Record</h3>
+            <p>With over 13 years of experience, we have successfully treated thousands of patients and helped them regain their mobility.</p>
+        </div>
+        <div class="reason">
+            <i class="fas fa-hand-holding-medical"></i>
+            <h3>Compassionate Care</h3>
+            <p>We treat every patient with empathy and respect, ensuring a positive and supportive environment.</p>
+        </div>
+        <div class="reason">
+            <i class="fas fa-calendar-check"></i>
+            <h3>Flexible Appointments</h3>
+            <p>We offer flexible scheduling options to accommodate your busy lifestyle.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2023 PhysioCare Clinic. All rights reserved.</p>
+        <div class="social-links">
+            <a href="#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" aria-label="Back to top">&#8593;</div>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+       // Toggle Mobile Menu
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
+
+mobileMenu.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
+
+// Close Menu When Clicked Outside
+document.addEventListener('click', (event) => {
+    const isClickInsideMenu = navLinks.contains(event.target) || mobileMenu.contains(event.target);
+    if (!isClickInsideMenu && navLinks.classList.contains('active')) {
+        navLinks.classList.remove('active');
+    }
+});
+
+        let lastScrollTop = 0; // Variable to store the last scroll position
+
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.header');
+    const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+
+    if (currentScrollTop > lastScrollTop) {
+        // Scrolling down
+        header.classList.add('hide'); // Hide the header
+    } else {
+        // Scrolling up
+        header.classList.remove('hide'); // Show the header
+    }
+
+    lastScrollTop = currentScrollTop; // Update the last scroll position
+});
+
+// Function to check if an element is in the viewport
+function isInViewport(element) {
+    const rect = element.getBoundingClientRect();
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+}
+
+// Function to handle scroll events
+function handleScroll() {
+    const sections = document.querySelectorAll('.fade-in');
+
+    sections.forEach((section) => {
+        if (isInViewport(section)) {
+            section.classList.add('visible');
+        }
+    });
+}
+
+// Add scroll event listener
+window.addEventListener('scroll', handleScroll);
+
+// Trigger the function on page load to check for sections already in the viewport
+window.addEventListener('load', handleScroll);
+
+
+ // Close the menu when a link is clicked
+ document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+    });
+
+    // Smooth scrolling for anchor links (excluding dropdown links)
+document.querySelectorAll('.nav-links a:not(.dropdown-toggle)').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        if (this.getAttribute('href').startsWith('#')) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+        // Allow default behavior for non-hash links (e.g., about-us.html, our-team.html)
+    });
+});
+
+
+        // Back-to-Top Button
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+
+        // Fade-In Animation on Scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+
+        const fadeInOnScroll = () => {
+            fadeElements.forEach((element) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementBottom = element.getBoundingClientRect().bottom;
+                if (elementTop < window.innerHeight && elementBottom > 0) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        window.addEventListener('scroll', fadeInOnScroll);
+        window.addEventListener('load', fadeInOnScroll);
+    </script>
+
+</body>
+</html>
