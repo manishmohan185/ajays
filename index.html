@@ -515,7 +515,7 @@ p {
     background-color: #ff4a3a; /* Darker coral on hover */
 }
 
-       /* Doctors Section */
+     /* Doctors Section */
 .doctors {
     padding: 4rem 2rem;
     text-align: center;
@@ -525,7 +525,7 @@ p {
 .doctor-profiles {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 3rem; /* Space between items */
     flex-wrap: wrap;
 }
 
@@ -544,9 +544,13 @@ p {
 
 /* Computer/Desktop Layout */
 @media (min-width: 768px) {
+    .doctor-profiles {
+        gap: 5rem; /* Increase space between columns for desktop */
+    }
+
     .doctor-profile img {
-        width: 120px; /* Reduce image size for computers */
-        height: 120px; /* Reduce image size for computers */
+        width: 180px; /* Reduce image size for computers */
+        height: 180px; /* Reduce image size for computers */
     }
 }
         /* Appointment Section */
